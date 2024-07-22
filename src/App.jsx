@@ -1,11 +1,10 @@
-import { useState } from 'react'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Landing } from "./pages/Landing";
 import { Login } from "./pages/Login";
 import { PageNotFound } from "./pages/PageNotFound";
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { CAL } from './pages/CAL';
+import { AssetDashboard } from './pages/AssetDashboard';
 import './App.css';
 
 const App = () => {
@@ -14,7 +13,9 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='*'element={<PageNotFound/>} />
+          <Route path='/asset-dashboard' element={<AssetDashboard/>} />
+          <Route path='/cal' element={<CAL/>} />
+          <Route path='*' element={<PageNotFound/>} />
         </Routes>
     </Router>
 );

@@ -9,20 +9,23 @@
 
   .white-container {
     background-color: white;
-    /*width: 50%;*/
-    /*height: 50%;*/
+    width: 60%;
+    /* height: 70%; */
     border-radius: 10px;
+    vertical-align: middle;
   }
 
   @media (max-width: 1280px){
     .white-container {
-      width: 80%;
+      /* width: 70%;
+      height: 70%; */
     }
   }
 
   h1 {
     color: blue;
     text-align: center;
+    font-family: LeagueSpartan-Bold;
   }
 
   h2 {
@@ -39,12 +42,15 @@
   
   .column {
     flex: 1; /* Ensures each column takes equal space */
-    text-align: left; /* Centers text within columns */
-    padding-right: 50px;
+    vertical-align: middle;
+    text-align: center; /* Centers text within columns */
   }
 
   img{
     height: 300px;
   }
 
+  p{
+    color: black;
+  }
   
