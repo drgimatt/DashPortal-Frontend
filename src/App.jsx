@@ -11,10 +11,10 @@ const App = () => {
   return (
     <Router>
         <Routes>
-          <Route exact path='/' element={<Landing/>} />
+          <Route exact path='/land' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/asset-dashboard' element={<AssetDashboard/>} />
-          <Route path='/cal' element={<CAL/>} />
+          <Route path='/' element={<CAL/>} />
           <Route path='*' element={<PageNotFound/>} />
         </Routes>
     </Router>

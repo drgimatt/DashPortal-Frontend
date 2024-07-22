@@ -1,0 +1,84 @@
+h1 {
+    color: blue;
+    font-family: LeagueSpartan-Bold;
+    text-align: left;
+  }
+
+
+.header-container{
+    display: flex;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding: 15px;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: relative; 
+    margin-top: 30px;
+}
+
+.head-left{
+    flex: 2;
+    text-align: left;
+}
+
+.head-right{
+    flex: 1;
+    text-align: right;
+}
+
+.table-container {
+    background-color: white;
+    margin-left: 10%;
+    width: 100%;
+    margin-right: 10%;
+    border-radius: 10px;
+    color: black;
+    position: relative;
+    padding: 20px;
+    min-height: calc(80vh - 100px); /* Maintain a minimum margin of 40px from the bottom */
+}
+
+@media screen and (max-width: 768px) {
+    .table-container {
+        height: 50vh; /* Use viewport height */
+    }
+}
+
+table{
+    width: 100%;
+}
+
+.table-left{
+     text-align: left;
+     padding-left: 40px;
+}
+
+.table-right{
+    text-align: right;
+}
+
+.button-style{
+    background-color: white;
+    color: black;
+}
+
+th {
+    background-color: #DEE6F8;
+    height: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-top: 1px solid #1044B4;
+    border-bottom: 1px solid #1044B4;
+}
+
+th:first-child {
+    border-left: 1px solid #1044B4; 
+}
+
+th:last-child {
+    border-right: 1px solid #1044B4; 
+}
+
