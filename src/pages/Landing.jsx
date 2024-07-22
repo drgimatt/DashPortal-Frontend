@@ -24,7 +24,7 @@ export const Landing = () => {
             </div>
             <div className="column" style={{padding: '10%'}}>
               <h2>DashPortal is a cutting-edge web application designed to streamline the creation of QR code documents for Dashlabs.ai.</h2>
-              <button onClick={handleRedirect}>Login</button>
+              <button onClick={handleRedirect} style={{margin: '5%'}}>Login</button>
             </div>
           </div>
         </div>
