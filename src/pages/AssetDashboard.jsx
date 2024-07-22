@@ -13,11 +13,22 @@ export const AssetDashboard = () => {
             <div class="container">
                 <div class="header-container">
                     <div class="head-left">
-                        <img src="samp" alt="Lab Logo"></img>
-                        <h1>Laboratory Name</h1>
+                        Laboratory Name
                     </div>
                     <div class="head-right">
                         <button class="button-style">Back</button>
+                    </div>
+                </div>
+                <div class="container-float">
+                    <div class="left-column">
+                        <h3>Asset Library</h3>
+                        <ul>
+                            <li><button class="button-lib">Images</button></li>
+                            <li><button class="button-lib">URLs</button></li>
+                        </ul>
+                    </div>
+                    <div class="right-column">
+
                     </div>
                 </div>
             </div>

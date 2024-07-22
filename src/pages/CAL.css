@@ -22,6 +22,10 @@ h1 {
 .head-left{
     flex: 2;
     text-align: left;
+    font-size: 30px;
+    color: blue;
+    font-family: LeagueSpartan-Bold;
+    text-align: left;
 }
 
 .head-right{
@@ -38,7 +42,7 @@ h1 {
     color: black;
     position: relative;
     padding: 20px;
-    min-height: calc(80vh - 100px); /* Maintain a minimum margin of 40px from the bottom */
+    min-height: calc(80vh - 100px); 
 }
 
 @media screen and (max-width: 768px) {
