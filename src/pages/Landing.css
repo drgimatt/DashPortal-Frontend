@@ -1,0 +1,50 @@
+
+  .blue-background {
+    background-color: blue;
+    height: 100vh; /* 100% of the viewport height */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .white-container {
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+  }
+
+  @media (max-width: 1280px){
+    .white-container {
+      width: 80%;
+    }
+  }
+
+  h1 {
+    color: blue;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 23px;
+    color: blue;
+  }
+
+  .row {
+    display: flex;
+    align-items: center; /* Vertically centers the items */
+    justify-content: center; /* Horizontally centers the items */
+   
+  }
+  
+  .column {
+    flex: 1; /* Ensures each column takes equal space */
+    text-align: left; /* Centers text within columns */
+    padding-right: 50px;
+  }
+
+  img{
+    height: 300px;
+  }
+
