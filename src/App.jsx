@@ -14,6 +14,7 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
+          <Route path='*'element={<PageNotFound/>} />
         </Routes>
     </Router>
 );
