@@ -13,7 +13,7 @@
 
 .left-column {
     flex: 20%;
-    background-color: blue;
+    background-color: #1044B4;
     padding: 10px;
     border-radius: 10px;
     font-family: LeagueSpartan-Bold;
@@ -33,5 +33,5 @@ li{
 }
 
 .button-lib{
-    background-color: blue;
+    background-color: #1044B4;
 }

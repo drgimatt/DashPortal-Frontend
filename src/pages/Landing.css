@@ -1,5 +1,5 @@
    .blue-background {
-    background-color: blue;
+    background-color: #1044B4;
     height: 100vh; /* 100% of the viewport height */
     width: 100vw;
     display: flex;
@@ -23,14 +23,14 @@
   }
 
   h1 {
-    color: blue;
+    color: #1044B4;
     text-align: center;
     font-family: LeagueSpartan-Bold;
   }
 
   h2 {
     font-size: 23px;
-    color: blue;
+    color: #1044B4;
   }
 
   .row {
