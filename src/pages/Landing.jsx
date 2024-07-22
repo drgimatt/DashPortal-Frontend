@@ -4,13 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 export const Landing = () => {
     
+  
+    const root = document.querySelector(':root');
+    root.style.setProperty('--padding', '0rem');
+
     const navigate = useNavigate();
     const handleRedirect = () => {
-        navigate('./Login'); // Update with the actual route you want to navigate to
+        navigate('./login'); // Update with the actual route you want to navigate to
       };
 
     return (
-        <div className="blue-background">
+
+        <div className="blue-background" >
         <div className="white-container">
           <div className="row">
             <div className="column">

@@ -81,3 +81,49 @@ button:focus-visible {
   }
 
 }
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Regular'), url(./fonts/LeagueSpartan/LeagueSpartan-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Bold'), url(./fonts/LeagueSpartan/LeagueSpartan-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Black'), url(./fonts/LeagueSpartan/LeagueSpartan-Black.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-ExtraBold'), url(./fonts/LeagueSpartan/LeagueSpartan-ExtraBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-ExtraLight'), url(./fonts/LeagueSpartan/LeagueSpartan-ExtraLight.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Light'), url(./fonts/LeagueSpartan/LeagueSpartan-Light.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Medium'), url(./fonts/LeagueSpartan/LeagueSpartan-Medium.ttf) format('truetype');
+}
+
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-SemiBold'), url(./fonts/LeagueSpartan/LeagueSpartan-SemiBold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'LeagueSpartan';
+  src: local('LeagueSpartan-Thin'), url(./fonts/LeagueSpartan/LeagueSpartan-Thin.ttf) format('truetype');
+}
