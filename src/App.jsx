@@ -17,7 +17,7 @@ const App = () => {
           <Route path='/ass' element={<AssetDashboard/>} />
           <Route path='/ds' element={<CAL/>} />
           <Route path='*' element={<PageNotFound/>} />
-          <Route path='/' element={<LabDashboard/>} />
+          <Route path='/labdash' element={<LabDashboard/>} />
         </Routes>
     </Router>
 );
