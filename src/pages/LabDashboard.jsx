@@ -1,4 +1,4 @@
-import './CAL.css';
+import './LabDashboard.css';
 
 export const LabDashboard = () => {
     return (
@@ -12,29 +12,60 @@ export const LabDashboard = () => {
             </div>
                 <div class="header-container">
                     <div class="head-left">
-                        <h1>Laboratory Name</h1>
+                        <h1>Laboratories</h1>
                     </div>
                     <div class="head-right">
                         <button class="button-style">Back</button>
                     </div>
                 </div>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th class="table-left">Email Address</th>
-                            <th>Role</th>
-                            <th>Action</th>
-                        </tr>
-                        {/* Loop database for access list */}
-                        <tr>
-                            <td class="table-left">User1@dashlabs.ai</td>
-                            <td>User</td>
-                            <td><button class="button-style">Delete</button></td>
-                        </tr>
-                        {/* ----------------------------- */}
-                    </table>
+                <div class="lab-container">
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <div class="item-card-container">
+                                <div class="item-card">
+                                    <img class="item-card-pic" src="ds.png" alt="Lab 1 Image"></img>
+                                    <div class="item-card-body">
+                                        <h4 class="item-card-title">Lab 1</h4>
+                                        <a href="#" class="item-btn">More Info</a>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    <div class="grid-item">
+                        <div class="item-card-container">
+                            <div class="item-card">
+                                <img class="item-card-pic" src="ds.png" alt="Lab 2 Image"></img>
+                                <div class="item-card-body">
+                                    <h4 class="item-card-title">Lab 2</h4>
+                                    <a href="#" class="item-btn">More Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="item-card-container">
+                            <div class="item-card">
+                                <img class="item-card-pic" src="ds.png" alt="Lab 3 Image"></img>
+                                <div class="item-card-body">
+                                    <h4 class="item-card-title">Lab 5</h4>
+                                    <a href="#" class="item-btn">More Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="item-card-container">
+                            <div class="item-card">
+                                <img class="item-card-pic" src="ds.png" alt="Lab 4 Image"></img>
+                                <div class="item-card-body">
+                                    <h4 class="item-card-title">Lab 4</h4>
+                                    <a href="#" class="item-btn">More Info</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
+            </div>
         </div>
     )
 }

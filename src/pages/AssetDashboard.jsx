@@ -10,7 +10,7 @@ export const AssetDashboard = () => {
                     <button class="nav-button">Sign Out</button>
                 </div>
             </div>
-            <div class="container">
+
                 <div class="header-container">
                     <div class="head-left">
                         Laboratory Name
@@ -30,7 +30,7 @@ export const AssetDashboard = () => {
                     <div class="right-column">
 
                     </div>
-                </div>
+
             </div>
         </div>
     )

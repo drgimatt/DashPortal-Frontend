@@ -14,10 +14,10 @@ const App = () => {
         <Routes>
           <Route exact path='/land' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/asset' element={<AssetDashboard/>} />
-          <Route path='/cal' element={<CAL/>} />
+          <Route path='/ass' element={<AssetDashboard/>} />
+          <Route path='/ds' element={<CAL/>} />
           <Route path='*' element={<PageNotFound/>} />
-          <Route path='' element={<LabDashboard/>} />
+          <Route path='/' element={<LabDashboard/>} />
         </Routes>
     </Router>
 );

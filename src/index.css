@@ -28,7 +28,7 @@ a:hover {
 
 .main-background{
   background-color: #C7D3ED;
-  height: 110vh; /* 100% of the viewport height */
+  height: 100vh; 
   width: 100vw;
   max-width: 100%;
   box-sizing: border-box;

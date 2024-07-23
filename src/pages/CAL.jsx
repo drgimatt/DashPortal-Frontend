@@ -10,7 +10,7 @@ export const CAL = () => {
                     <button class="nav-button">Sign Out</button>
                 </div>
             </div>
-            <div class="container">
+
                 <div class="header-container">
                     <div class="head-left">
                         <h1>Laboratory Name</h1>
@@ -34,7 +34,7 @@ export const CAL = () => {
                         </tr>
                         {/* ----------------------------- */}
                     </table>
-                </div>
+
             </div>
         </div>
     )
