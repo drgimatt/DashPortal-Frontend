@@ -10,7 +10,7 @@ export const Landing = () => {
 
     const navigate = useNavigate();
     const handleRedirect = () => {
-        navigate('./login'); // Update with the actual route you want to navigate to
+        navigate('/login'); // Update with the actual route you want to navigate to
       };
 
     return (
