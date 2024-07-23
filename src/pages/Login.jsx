@@ -38,20 +38,15 @@ export const Login = () => {
 
         setError("");
 
-        console.log('Attempting login with:', { email, password });  // New log
-
         try {
             const response = await axios.post('http://localhost:5000/api/users/login', {
                 email,
                 password
             });
 
-            console.log('Login response:', response.data);  // New log
-
             localStorage.setItem('token', response.data.token);
             navigate('/labdash');
         } catch (error) {
-            console.error('Login error:', error.response?.data || error.message);  // New log
             setError(error.response?.data?.message || "Login failed. Please try again.");
         }
     };
