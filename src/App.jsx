@@ -5,6 +5,7 @@ import { Login } from "./pages/Login";
 import { PageNotFound } from "./pages/PageNotFound";
 import { CAL } from './pages/CAL';
 import { AssetDashboard } from './pages/AssetDashboard';
+import { LabDashboard } from './pages/LabDashboard';
 import './App.css';
 
 const App = () => {
@@ -13,9 +14,10 @@ const App = () => {
         <Routes>
           <Route exact path='/land' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='' element={<AssetDashboard/>} />
+          <Route path='/asset' element={<AssetDashboard/>} />
           <Route path='/cal' element={<CAL/>} />
           <Route path='*' element={<PageNotFound/>} />
+          <Route path='' element={<LabDashboard/>} />
         </Routes>
     </Router>
 );
