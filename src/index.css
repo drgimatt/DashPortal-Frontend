@@ -28,8 +28,10 @@ a:hover {
 
 .main-background{
   background-color: #C7D3ED;
-  height: 100vh; /* 100% of the viewport height */
+  height: 110vh; /* 100% of the viewport height */
   width: 100vw;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .navigation{
@@ -39,6 +41,7 @@ a:hover {
   align-items: center;
   padding-left: 90px;
   padding-right: 60px;
+  max-width: 100%;
 }
 
 .nav-left{

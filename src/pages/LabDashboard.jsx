@@ -10,7 +10,6 @@ export const LabDashboard = () => {
                     <button class="nav-button">Sign Out</button>
                 </div>
             </div>
-            <div class="container">
                 <div class="header-container">
                     <div class="head-left">
                         <h1>Laboratory Name</h1>
@@ -35,7 +34,7 @@ export const LabDashboard = () => {
                         {/* ----------------------------- */}
                     </table>
                 </div>
-            </div>
+
         </div>
     )
 }
