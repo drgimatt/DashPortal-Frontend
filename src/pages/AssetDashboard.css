@@ -33,3 +33,51 @@ li{
 .button-lib{
     background-color: #1044B4;
 }
+
+
+td, th{
+    color: black;
+}
+
+.item-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width of the grid-item */
+}
+.item-card {
+    width: 100%;
+    text-align: center;
+}
+.item-card-pic {
+    max-width: 100%;
+    height: auto;
+}
+.item-card-body {
+    padding: 10px 0;
+}
+.item-card-title {
+    margin: 10px 0;
+    color: black;
+}
+.item-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #1044B4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 2px;
+    
+}
+/* Adjustments for responsiveness */
+@media (max-width: 1024px) {
+    .grid-item {
+        width: calc(50% - 2%);
+    }
+}
+@media (max-width: 768px) {
+    .grid-item {
+        width: calc(100% - 2%);
+    }
+}
