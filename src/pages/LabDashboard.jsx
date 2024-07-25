@@ -1,14 +1,28 @@
+// src/components/LabDashboard.js
+import React, { useState, useEffect } from 'react';
 import './LabDashboard.css';
 import { useNavigate } from 'react-router-dom';
+import { fetchLaboratories } from '../services/api';
 
 export const LabDashboard = () => {
     const navigate = useNavigate();
+    const [laboratories, setLaboratories] = useState([]);
+
+    useEffect(() => {
+        const getLaboratories = async () => {
+            try {
+                const data = await fetchLaboratories();
+                setLaboratories(data);
+            } catch (error) {
+                console.error('Error fetching laboratories:', error);
+            }
+        };
+
+        getLaboratories();
+    }, []);
 
     const handleSignOut = () => {
-        // Remove the token from localStorage
         localStorage.removeItem('token');
-        
-        // Navigate back to the login page
         navigate('/login');
     };
 
@@ -17,22 +31,16 @@ export const LabDashboard = () => {
     };
 
     const handleHome = () => {
-        // Remove the token from localStorage
         localStorage.removeItem('token');
-        
-        //Navigate back to landing page
         navigate('/land');
     }
     
-    const handleLab = () => {
-        //Navigate to Assets Dashboard
-        navigate('/asset');
+    const handleLab = (labId) => {
+        navigate(`/asset/${labId}`);
     }
 
     const handleManageAccess = () => {
-        //Navigate to CAL
         navigate('/cal')
-
     }
 
     return (
@@ -55,50 +63,23 @@ export const LabDashboard = () => {
             </div>
             <div className="lab-container">
                 <div className="grid-container">
-                    <div className="grid-item">
-                        <div className="item-card-container">
-                            <div className="item-card">
-                                <img className="item-card-pic" src="ds.png" alt="Lab 1 Image" />
-                                <div className="item-card-body">
-                                    <h4 className="item-card-title">Lab 1</h4>
-                                    <button className="item-btn" onClick={handleLab}>More Info</button>
+                    {laboratories.map((lab) => (
+                        <div className="grid-item" key={lab.LabID}>
+                            <div className="item-card-container">
+                                <div className="item-card">
+                                    <img 
+                                        className="item-card-pic" 
+                                        src={lab.LabLogo} 
+                                        alt={`${lab.LabName} Image`} 
+                                    />
+                                    <div className="item-card-body">
+                                        <h4 className="item-card-title">{lab.LabName}</h4>
+                                        <button className="item-btn" onClick={() => handleLab(lab.LabID)}>More Info</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="grid-item">
-                        <div className="item-card-container">
-                            <div className="item-card">
-                                <img className="item-card-pic" src="ds.png" alt="Lab 2 Image" />
-                                <div className="item-card-body">
-                                    <h4 className="item-card-title">Lab 2</h4>
-                                    <button className="item-btn" onClick={handleLab}>More Info</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="grid-item">
-                        <div className="item-card-container">
-                            <div className="item-card">
-                                <img className="item-card-pic" src="ds.png" alt="Lab 3 Image" />
-                                <div className="item-card-body">
-                                    <h4 className="item-card-title">Lab 5</h4>
-                                    <button className="item-btn" onClick={handleLab}>More Info</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="grid-item">
-                        <div className="item-card-container">
-                            <div className="item-card">
-                                <img className="item-card-pic" src="ds.png" alt="Lab 4 Image" />
-                                <div className="item-card-body">
-                                    <h4 className="item-card-title">Lab 4</h4>
-                                    <button className="item-btn" onClick={handleLab}>More Info</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </div>
