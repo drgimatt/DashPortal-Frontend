@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './AssetDashboard.css';
 import { useNavigate } from 'react-router-dom';
 
-
 export const AssetDashboard = () => {
     const navigate = useNavigate();
     
@@ -49,6 +48,48 @@ export const AssetDashboard = () => {
 
     }
 
+    const addPosters = () => {
+        setActiveContent('add_posters');
+    };
+
+    const [formData, setFormData] = useState({
+        title: '',
+        image: '',
+        days: {
+          monday: false,
+          tuesday: false,
+          wednesday: false,
+          thursday: false,
+          friday: false,
+          saturday: false,
+          sunday: false,
+        },
+        department: '',
+        name: '',
+        labName: '',
+        link: '',
+      });
+    
+      const handleChange = (e) => {
+        const { name, value, type, files, checked } = e.target;
+        if (type === 'file') {
+          setFormData((prevData) => ({
+            ...prevData,
+            imageFile: files[0],
+          }));
+        } else {
+          setFormData((prevData) => ({
+            ...prevData,
+            [type === 'checkbox' ? 'days' : name]: type === 'checkbox' ? { ...prevData.days, [name]: checked } : value,
+          }));
+        }
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+      };
+
     return (
         <div className="main-background">
             <div className="navigation">
@@ -75,6 +116,7 @@ export const AssetDashboard = () => {
                         <li><button className="button-lib" onClick={showImages}>Images</button></li>
                         <li><button className="button-lib" onClick={showURLs}>URLs</button></li>
                         <li><button className="button-lib" onClick={showPosters}>Posters</button></li>
+                        <li><button className="button-lib" onClick={addPosters}>Create Poster</button></li>
                     </ul>
                 </div>
                 <div className="right-column">
@@ -144,21 +186,121 @@ export const AssetDashboard = () => {
                             </div>
                         </div>
                     </div>
-                <div class="grid-item">
-                    <div class="item-card-container">
-                        <div class="item-card">
-                            <img class="item-card-pic" src="ds.png" alt="Lab 2 Image"></img>
-                            <div class="item-card-body">
-                                <h4 class="item-card-title">Poster 2</h4>
-                                <a href="#" class="item-btn">Edit</a>
-                                <a href="#" class="item-btn">Download</a>
-                                <a href="#" class="item-btn">Delete</a>
+                    <div class="grid-item">
+                        <div class="item-card-container">
+                            <div class="item-card">
+                                <img class="item-card-pic" src="ds.png" alt="Lab 2 Image"></img>
+                                <div class="item-card-body">
+                                    <h4 class="item-card-title">Poster 2</h4>
+                                    <a href="#" class="item-btn">Edit</a>
+                                    <a href="#" class="item-btn">Download</a>
+                                    <a href="#" class="item-btn">Delete</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
                     }
+
+                {activeContent === 'add_posters' && 
+                     
+                        <form className="form" onSubmit={handleSubmit}>
+                          <div className="form-group">
+                            <label className="form-label">Title:</label>
+                            <input
+                              type="text"
+                              name="title"
+                              value={formData.title}
+                              onChange={handleChange}
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Laboratory:</label>
+                            <input
+                              type="text"
+                              name="labName"
+                              value={formData.labName}
+                              onChange={handleChange}
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Name:</label>
+                            <input
+                              type="text"
+                              name="name"
+                              value={formData.name}
+                              onChange={handleChange}
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Department:</label>
+                            <input
+                              type="text"
+                              name="department"
+                              value={formData.department}
+                              onChange={handleChange}
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Upload Photo:</label>
+                            <input
+                                type="file"
+                                name="imageFile"
+                                accept="image/*"
+                                onChange={handleChange}
+                                required
+                                className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Link:</label>
+                            <input
+                                type="url"
+                                name="link"
+                                value={formData.link}
+                                onChange={handleChange}
+                                required
+                                className="form-input"
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Schedule:</label>
+                            <div className="form-checkbox-group">
+                                {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
+                                <div key={day} className="form-checkbox">
+                                <input
+                                    type="checkbox"
+                                    name={day}
+                                    checked={formData.days[day]}
+                                    onChange={handleChange}
+                                />
+                                <label className="form-checkbox-label">{day.charAt(0).toUpperCase() + day.slice(1)}</label>
+                                </div>
+                                    ))}
+                          </div>
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Link:</label>
+                            <input
+                              type="url"
+                              name="link"
+                              value={formData.link}
+                              onChange={handleChange}
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          <button type="submit" className="form-button">Submit</button>
+                        </form>
+                }
                 </div>
             </div>
         </div>

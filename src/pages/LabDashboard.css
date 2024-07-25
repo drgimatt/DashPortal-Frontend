@@ -52,111 +52,71 @@
     }
 }
 
-.lab-container{
+.form-container {
     background-color: white;
-    margin-left: 5%;
-    width: 90vw;
-    margin-right: 5%;
-    margin-top: 30px;
+    padding: 20px;
     border-radius: 10px;
-    color: black;
-    position: relative;
-    padding: 0px;
-
-    min-height: calc(80vh - 100px); 
-}
-
-.item-card {
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
-    overflow: hidden; 
-}
-
-.item-card-pic {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
     width: 100%;
-    height: 200px; 
-    object-fit: cover; 
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-}
-
-
-.item-card-body {
-    padding: 20px;
-}
-
-.item-card-title {
-    margin-top: 0;
-}
-
-.item-card-text {
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
     margin-bottom: 15px;
-}
-
-.item-btn {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #1EA36D;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-}
-
-.item-btn:hover {
-    background-color: #1044B4;
-}
-
-.card-body {
-    text-align: justify;
-}
-
-.item-title {
-    font-family: 'Alice',sans-serif;
-    text-align: center;
-    color: #1EA36D;
-}
-
-.item-card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-    gap: 10px;
-    padding: 0px; 
-}
-
-.item-card {
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black; /* Set label text color to black */
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
     border: 1px solid #ccc;
-    padding: 20px;
-    transition: transform 0.5s;
-}
-
-.item-card:hover {
-    box-shadow: 0 0 5px  #1044B4;
-}
-
-.item-card-pic {
-    width:100%;
-
-}
-
-.item-btn {
-    background-color: #1044B4; 
-    color: white;
+    border-radius: 4px;
+    background-color: white; /* Set input background color to white */
+    color: #333; /* Set input text color */
+  }
+  
+  .form-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center checkboxes horizontally */
+    gap: 10px; /* Add spacing between checkboxes */
+  }
+  
+  .form-checkbox {
+    margin-right: 15px;
+  }
+  
+  .form-checkbox input {
+    margin-right: 5px;
+  }
+  
+  .form-checkbox-label {
+    color: black; /* Set days checkbox label color to black */
+  }
+  
+  .form-button {
+    width: 100%;
     padding: 10px;
-}
-.item-btn:hover {
-    background-color: #1044B4; 
+    background-color: #007bff;
     color: white;
-    padding: 10px;
-}
-
-@media (max-width:459px){
-    .item-card-container {
-        margin: 0px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr)); 
-        margin-bottom:60px; 
-    }
-
-
-
-}
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form-button:hover {
+    background-color: #0056b3;
+  }

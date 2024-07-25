@@ -14,8 +14,13 @@ const App = () => {
         <Routes>
           <Route exact path='/land' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
+<<<<<<< Updated upstream
           <Route path='/asset' element={<AssetDashboard/>} />
           <Route path='/cal' element={<CAL/>} />
+=======
+          <Route path='/' element={<AssetDashboard/>} />
+          <Route path='/ds' element={<CAL/>} />
+>>>>>>> Stashed changes
           <Route path='*' element={<PageNotFound/>} />
           <Route path='/labdash' element={<LabDashboard/>} />
         </Routes>
