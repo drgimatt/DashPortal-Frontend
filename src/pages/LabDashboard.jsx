@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './LabDashboard.css';
 import { useNavigate } from 'react-router-dom';
-import { fetchLaboratories } from '../services/api';
+//import { fetchLaboratories } from '../services/api';
 
 export const LabDashboard = () => {
     const navigate = useNavigate();
@@ -31,7 +31,6 @@ export const LabDashboard = () => {
     };
 
     const handleHome = () => {
-        localStorage.removeItem('token');
         navigate('/land');
     }
     

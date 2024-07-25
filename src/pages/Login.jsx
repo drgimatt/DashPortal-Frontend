@@ -43,7 +43,6 @@ export const Login = () => {
                 email,
                 password
             });
-
             localStorage.setItem('token', response.data.token);
             navigate('/labdash');
         } catch (error) {
