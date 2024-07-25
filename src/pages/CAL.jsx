@@ -43,7 +43,7 @@ export const CAL = () => {
 
                 <div class="header-container">
                     <div class="head-left">
-                        <h1>Laboratory Name</h1>
+                        <h1>Control Access List</h1>
                     </div>
                     <div class="head-right">
                         <button class="button-style">Back</button>
