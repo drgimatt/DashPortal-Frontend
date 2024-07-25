@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './AssetDashboard.css';
+import { useNavigate } from 'react-router-dom';
 
 
 export const AssetDashboard = () => {
+    const navigate = useNavigate();
+    
     // State to manage which content is shown
     const [activeContent, setActiveContent] = useState(null);
 
@@ -20,15 +23,40 @@ export const AssetDashboard = () => {
     const showPosters = () => {
         setActiveContent('posters');
     };
+    const handleSignOut = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem('token');
+        
+        // Navigate back to the login page
+        navigate('/login');
+    };
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
+    const handleHome = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem('token');
+        
+        //Navigate back to landing page
+        navigate('/land');
+    }
+
+    const handleManageAccess = () => {
+        //Navigate to CAL
+        navigate('/cal');
+
+    }
 
     return (
         <div className="main-background">
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
                 <div className="nav-right">
-                    <button className="nav-button">Home</button>
-                    <button className="nav-button">Manage User Access</button>
-                    <button className="nav-button">Sign Out</button>
+                    <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button" onClick={handleManageAccess}>Manage User Access</button>
+                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
 

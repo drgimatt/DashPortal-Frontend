@@ -1,14 +1,43 @@
 import './CAL.css';
+import { useNavigate } from 'react-router-dom';
 
 export const CAL = () => {
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem('token');
+        
+        // Navigate back to the login page
+        navigate('/login');
+    };
+
+    const handleBack = () => {
+        navigate(-1);
+    };
+
+    const handleHome = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem('token');
+        
+        //Navigate back to landing page
+        navigate('/land');
+    }
+
+    const handleManageAccess = () => {
+        //Navigate to CAL
+        navigate('/cal')
+
+    }
+
     return (
         <div class="main-background">
             <div class="navigation">
                 <div class="nav-left">DashPortal</div>
                 <div class="nav-right">
-                    <button class="nav-button">Home</button>
-                    <button className="nav-button">Manage User Access</button>
-                    <button class="nav-button">Sign Out</button>
+                    <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button" onClick={handleManageAccess}>Manage User Access</button>
+                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
 
