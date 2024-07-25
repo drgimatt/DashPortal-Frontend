@@ -261,17 +261,6 @@ export const AssetDashboard = () => {
                             />
                           </div>
                           <div className="form-group">
-                            <label className="form-label">Link:</label>
-                            <input
-                                type="url"
-                                name="link"
-                                value={formData.link}
-                                onChange={handleChange}
-                                required
-                                className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
                             <label className="form-label">Schedule:</label>
                             <div className="form-checkbox-group">
                                 {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
