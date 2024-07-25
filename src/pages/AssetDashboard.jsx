@@ -27,6 +27,7 @@ export const AssetDashboard = () => {
                 <div className="nav-left">DashPortal</div>
                 <div className="nav-right">
                     <button className="nav-button">Home</button>
+                    <button className="nav-button">Manage User Access</button>
                     <button className="nav-button">Sign Out</button>
                 </div>
             </div>

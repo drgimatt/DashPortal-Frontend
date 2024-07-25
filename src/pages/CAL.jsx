@@ -7,6 +7,7 @@ export const CAL = () => {
                 <div class="nav-left">DashPortal</div>
                 <div class="nav-right">
                     <button class="nav-button">Home</button>
+                    <button className="nav-button">Manage User Access</button>
                     <button class="nav-button">Sign Out</button>
                 </div>
             </div>

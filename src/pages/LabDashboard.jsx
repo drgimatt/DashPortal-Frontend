@@ -23,6 +23,11 @@ export const LabDashboard = () => {
         //Navigate back to landing page
         navigate('/land');
     }
+    
+    const handleLab = () => {
+        //Navigate to Assets Dashboard
+        navigate('/asset');
+    }
 
     return (
         <div className="main-background">
@@ -30,6 +35,7 @@ export const LabDashboard = () => {
                 <div className="nav-left">DashPortal</div>
                 <div className="nav-right">
                     <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button">Manage User Access</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
@@ -49,7 +55,7 @@ export const LabDashboard = () => {
                                 <img className="item-card-pic" src="ds.png" alt="Lab 1 Image" />
                                 <div className="item-card-body">
                                     <h4 className="item-card-title">Lab 1</h4>
-                                    <a href="#" className="item-btn">More Info</a>
+                                    <button className="item-btn" onClick={handleLab}>More Info</button>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +66,7 @@ export const LabDashboard = () => {
                                 <img className="item-card-pic" src="ds.png" alt="Lab 2 Image" />
                                 <div className="item-card-body">
                                     <h4 className="item-card-title">Lab 2</h4>
-                                    <a href="#" className="item-btn">More Info</a>
+                                    <button className="item-btn" onClick={handleLab}>More Info</button>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +77,7 @@ export const LabDashboard = () => {
                                 <img className="item-card-pic" src="ds.png" alt="Lab 3 Image" />
                                 <div className="item-card-body">
                                     <h4 className="item-card-title">Lab 5</h4>
-                                    <a href="#" className="item-btn">More Info</a>
+                                    <button className="item-btn" onClick={handleLab}>More Info</button>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +88,7 @@ export const LabDashboard = () => {
                                 <img className="item-card-pic" src="ds.png" alt="Lab 4 Image" />
                                 <div className="item-card-body">
                                     <h4 className="item-card-title">Lab 4</h4>
-                                    <a href="#" className="item-btn">More Info</a>
+                                    <button className="item-btn" onClick={handleLab}>More Info</button>
                                 </div>
                             </div>
                         </div>
