@@ -39,7 +39,7 @@ export const Login = () => {
         setError("");
 
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', {
+            const response = await axios.post('http://localhost:5000/api/accounts/login', {
                 email,
                 password
             });
