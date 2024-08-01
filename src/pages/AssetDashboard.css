@@ -1,151 +1,200 @@
 .container-float {
-    display: flex;
-    background-color: white;
-    width: 90vw;
-    border-radius: 10px;
-    min-height: calc(80vh - 100px); 
-    margin-bottom: 20px;
-    margin-left: 5%;
-    margin-right: 5%;
-    position: relative; 
-    margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  width: 90vw;
+  border-radius: 10px;
+  min-height: calc(80vh - 100px); 
+  margin: 10px auto 20px auto;
+  position: relative; 
 }
 
 .left-column {
-    flex: 20%;
-    background-color: #1044B4;
-    padding: 10px;
-    border-radius: 10px;
-    font-family: LeagueSpartan-Bold;
-    font-size: 28px;
+  flex: 1 1 25%;
+  background-color: #1044B4;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: LeagueSpartan-Bold;
+  font-size: 28px;
 }
+
 .right-column {
-    flex: 80%;
-    background-color: white;
-    padding: 10px;
-    border-radius: 10px;
+  flex: 1 1 75%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
-li{
-    font-size:18px;
+@media (min-width: 1180px) {
+  .container-float {
+      width: 66vw;
+      margin-left: auto;
+      margin-right: auto;
+  }
 }
 
-.button-lib{
-    background-color: #1044B4;
+@media (max-width: 1180px) {
+  .left-column {
+      flex: 1 1 25%;
+  }
+  .right-column {
+      flex: 1 1 75%;
+      padding-left: 20px;
+      padding-right: 20px;
+  }
 }
 
+@media (max-width: 870px) {
+  .left-column {
+      flex: 1 1 35%;
+  }
+  .right-column {
+      flex: 1 1 65%;
+  }
+}
 
-td, th{
-    color: black;
+@media (max-width: 768px) {
+  .container-float {
+      flex-direction: column;
+      width: 90vw;
+  }
+  .left-column,
+  .right-column {
+      flex: 1 1 100%;
+      padding: 20px;
+  }
+  .right-column {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+}
+
+li {
+  font-size: 18px;
+}
+
+.button-lib {
+  background-color: #1044B4;
+}
+
+td, th {
+  color: black;
 }
 
 .item-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%; /* Ensure it takes full width of the grid-item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
+
 .item-card {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
+
 .item-card-pic {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
+
 .item-card-body {
-    padding: 10px 0;
+  padding: 10px 0;
 }
+
 .item-card-title {
-    margin: 10px 0;
-    color: black;
+  margin: 10px 0;
+  color: black;
 }
+
 .item-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #1044B4;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    margin: 2px;
-    
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #1044B4;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin: 2px;
 }
 
 @media (min-width: 1600px) {
-    .grid-item {
-        width: calc(50% - 2%);
-    }
+  .grid-item {
+      width: calc(50% - 2%);
+  }
 }
+
 @media (max-width: 768px) {
-    .grid-item {
-        width: calc(100% - 2%);
-    }
+  .grid-item {
+      width: calc(100% - 2%);
+  }
 }
 
 .form-container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .form-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: black; /* Set label text color to black */
-    text-align: left;
-  }
-  
-  .form-input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white; /* Set input background color to white */
-    color: #333; /* Set input text color */
-  }
-  
-  .form-checkbox-group {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  
-  .form-checkbox {
-    margin-right: 15px;
-  }
-  
-  .form-checkbox input {
-    margin-right: 5px;
-  }
-  
-  .form-checkbox-label {
-    color: black; /* Set days checkbox label color to black */
-  }
-  
-  .form-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .form-button:hover {
-    background-color: #0056b3;
-  }
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+  text-align: left;
+}
+
+.form-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+}
+
+.form-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-checkbox {
+  margin-right: 15px;
+}
+
+.form-checkbox input {
+  margin-right: 5px;
+}
+
+.form-checkbox-label {
+  color: black;
+}
+
+.form-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}

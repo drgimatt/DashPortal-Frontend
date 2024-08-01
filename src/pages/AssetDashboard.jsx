@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AssetDashboard.css';
 import { useNavigate } from 'react-router-dom';
 
 export const AssetDashboard = () => {
     const navigate = useNavigate();
-    
-    // State to manage which content is shown
     const [activeContent, setActiveContent] = useState(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Function to show images
-    const showImages = () => {
-        setActiveContent('images');
+    // Function to toggle the menu
+    const toggleMenu = () => {
+        setIsMenuOpen(prevState => !prevState);
     };
 
-    // Function to show URLs
-    const showURLs = () => {
-        setActiveContent('urls');
+    // Function to handle viewport size changes
+    const handleResize = () => {
+        if (window.innerWidth > 768) {
+            setIsMenuOpen(false);
+        }
     };
 
-    // Function to show Posters
-    const showPosters = () => {
-        setActiveContent('posters');
-    };
+    // Set up event listener on component mount and remove it on unmount
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     const handleSignOut = () => {
-        // Remove the token from localStorage
         localStorage.removeItem('token');
-        
-        // Navigate back to the login page
         navigate('/login');
     };
 
@@ -35,18 +37,13 @@ export const AssetDashboard = () => {
     };
 
     const handleHome = () => {
-        // Remove the token from localStorage
         localStorage.removeItem('token');
-        
-        //Navigate back to landing page
         navigate('/land');
     }
 
-    const handleManageAccess = () => {
-        //Navigate to CAL
-        navigate('/cal');
-
-    }
+    const showPosters = () => {
+        setActiveContent('posters');
+    };
 
     const addPosters = () => {
         setActiveContent('add_posters');
@@ -69,35 +66,39 @@ export const AssetDashboard = () => {
         labName: '',
         link: '',
       });
-    
-      const handleChange = (e) => {
+
+    const handleChange = (e) => {
         const { name, value, type, files, checked } = e.target;
         if (type === 'file') {
-          setFormData((prevData) => ({
+          setFormData(prevData => ({
             ...prevData,
             imageFile: files[0],
           }));
         } else {
-          setFormData((prevData) => ({
+          setFormData(prevData => ({
             ...prevData,
             [type === 'checkbox' ? 'days' : name]: type === 'checkbox' ? { ...prevData.days, [name]: checked } : value,
           }));
         }
-      };
-    
-      const handleSubmit = (e) => {
+    };
+
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData);
-      };
+    };
 
     return (
         <div className="main-background">
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
-                <div className="nav-right">
+                <div className={`nav-right ${isMenuOpen ? 'active' : ''}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
-                    <button className="nav-button" onClick={handleManageAccess}>Manage User Access</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
+                </div>
+                <div className="hamburger-icon" onClick={toggleMenu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
 
@@ -106,129 +107,52 @@ export const AssetDashboard = () => {
                     Laboratory Name
                 </div>
                 <div className="head-right">
-                    <button className="button-style">Back</button>
                 </div>
             </div>
             <div className="container-float">
                 <div className="left-column">
-                    <h3>Asset Library</h3>
+                    <h3>Poster Library</h3>
                     <ul>
-                        <li><button className="button-lib" onClick={showImages}>Images</button></li>
-                        <li><button className="button-lib" onClick={showURLs}>URLs</button></li>
                         <li><button className="button-lib" onClick={showPosters}>Posters</button></li>
                         <li><button className="button-lib" onClick={addPosters}>Create Poster</button></li>
                     </ul>
                 </div>
                 <div className="right-column">
-                    {/* Conditionally render content based on the activeContent state */}
-                    {activeContent === 'images' && 
-                    
-                        <div class="grid-container">
-                            <div class="grid-item">
-                                <div class="item-card-container">
-                                    <div class="item-card">
-                                        <img class="item-card-pic" src="ds.png" alt="Lab 1 Image"></img>
-                                        <div class="item-card-body">
-                                            <h4 class="item-card-title">Image1.png</h4>
-                                            <a href="#" class="item-btn">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <div class="grid-item">
-                            <div class="item-card-container">
-                                <div class="item-card">
-                                    <img class="item-card-pic" src="ds.png" alt="Lab 2 Image"></img>
-                                    <div class="item-card-body">
-                                        <h4 class="item-card-title">Image2.png</h4>
-                                        <a href="#" class="item-btn">Delete</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                    
-                    {activeContent === 'urls' && (
-                        <div className="url-container">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th className="table-left">Link</th>
-                                        <th>Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td className="table-left">https://chatgpt.com/</td>
-                                        <td>SAMPLE</td>
-                                        <td><button className="button-style">Delete</button></td>
-                                    </tr>
-                                    {/* Add more rows as needed */}
-                                </tbody>
-                            </table>
-                        </div>
-                    )}
-
                     {activeContent === 'posters' && 
-                    <div class="grid-container">
-                    <div class="grid-item">
-                        <div class="item-card-container">
-                            <div class="item-card">
-                                <img class="item-card-pic" src="ds.png" alt="Lab 1 Image"></img>
-                                <div class="item-card-body">
-                                    <h4 class="item-card-title">Poster 1</h4>
-                                    <a href="#" class="item-btn">Edit</a>
-                                    <a href="#" class="item-btn">Download</a>
-                                    <a href="#" class="item-btn">Delete</a>
+                    <div className="grid-container">
+                        <div className="grid-item">
+                            <div className="item-card-container">
+                                <div className="item-card">
+                                    <img className="item-card-pic" src="ds.png" alt="Poster 1" />
+                                    <div className="item-card-body">
+                                        <h4 className="item-card-title">Poster 1</h4>
+                                        <a href="#" className="item-btn">Edit</a>
+                                        <a href="#" className="item-btn">Download</a>
+                                        <a href="#" className="item-btn">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="grid-item">
+                            <div className="item-card-container">
+                                <div className="item-card">
+                                    <img className="item-card-pic" src="ds.png" alt="Poster 2" />
+                                    <div className="item-card-body">
+                                        <h4 className="item-card-title">Poster 2</h4>
+                                        <a href="#" className="item-btn">Edit</a>
+                                        <a href="#" className="item-btn">Download</a>
+                                        <a href="#" className="item-btn">Delete</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="grid-item">
-                        <div class="item-card-container">
-                            <div class="item-card">
-                                <img class="item-card-pic" src="ds.png" alt="Lab 2 Image"></img>
-                                <div class="item-card-body">
-                                    <h4 class="item-card-title">Poster 2</h4>
-                                    <a href="#" class="item-btn">Edit</a>
-                                    <a href="#" class="item-btn">Download</a>
-                                    <a href="#" class="item-btn">Delete</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                     }
 
-                {activeContent === 'add_posters' && 
-                     
+                    {activeContent === 'add_posters' && 
                         <form className="form" onSubmit={handleSubmit}>
                           <div className="form-group">
-                            <label className="form-label">Title:</label>
-                            <input
-                              type="text"
-                              name="title"
-                              value={formData.title}
-                              onChange={handleChange}
-                              required
-                              className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Laboratory:</label>
-                            <input
-                              type="text"
-                              name="labName"
-                              value={formData.labName}
-                              onChange={handleChange}
-                              required
-                              className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Name:</label>
+                            <label className="form-label">Personnel:</label>
                             <input
                               type="text"
                               name="name"
@@ -289,7 +213,7 @@ export const AssetDashboard = () => {
                           </div>
                           <button type="submit" className="form-button">Submit</button>
                         </form>
-                }
+                    }
                 </div>
             </div>
         </div>
