@@ -100,7 +100,7 @@ export const AssetDashboard = () => {
         <div className="main-background">
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
-                <div className={`nav-right ${isMenuOpen ? 'active' : ''}`}>
+                <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>

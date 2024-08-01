@@ -12,6 +12,8 @@ export const LabDashboard = () => {
     const [name, setName] = useState('');
     const [logo, setLogo] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isHamburg, setHamburg] = useState(false);
+
 
     useEffect(() => {
         const getLaboratories = async () => {
@@ -35,6 +37,9 @@ export const LabDashboard = () => {
     const handleResize = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
+        }
+        else{
+            setHamburg(true);
         }
     };
 
@@ -93,7 +98,7 @@ export const LabDashboard = () => {
         <div className="main-background">
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
-                <div className={`nav-right ${isMenuOpen ? 'active' : ''}`}>
+                <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
