@@ -7,8 +7,6 @@
   min-height: calc(80vh - 100px); 
   margin: 10px auto 20px auto;
   position: relative; 
-  overflow: hidden; 
-  box-sizing: border-box;
 }
 
 .left-column {
@@ -50,6 +48,13 @@
       flex: 1 1 75%;
       padding-left: 20px;
       padding-right: 20px;
+  }
+  .nav-left {
+    margin-left: 0;
+  }
+  
+  .nav-right {
+    margin-right: 0;
   }
   
 }
