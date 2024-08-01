@@ -6,6 +6,7 @@ export const AssetDashboard = () => {
     const navigate = useNavigate();
     const [activeContent, setActiveContent] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isHamburg, setHamburg] = useState(false);
 
     // Set initial state of activeContent
     useEffect(() => {
@@ -21,6 +22,10 @@ export const AssetDashboard = () => {
     const handleResize = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
+            setHamburg(false);
+        }
+        else{
+            setHamburg(true);
         }
     };
 
@@ -101,6 +106,10 @@ export const AssetDashboard = () => {
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
                 <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
+                    <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
+                </div>
+                <div className={`nav-right ${!isHamburg ? 'active' : 'hidden'}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>

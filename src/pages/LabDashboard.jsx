@@ -37,6 +37,7 @@ export const LabDashboard = () => {
     const handleResize = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
+            setHamburg(false);
         }
         else{
             setHamburg(true);
@@ -99,6 +100,10 @@ export const LabDashboard = () => {
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
                 <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
+                    <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
+                </div>
+                <div className={`nav-right ${!isHamburg ? 'active' : 'hidden'}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
