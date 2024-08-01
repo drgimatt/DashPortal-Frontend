@@ -7,6 +7,8 @@
   min-height: calc(80vh - 100px); 
   margin: 10px auto 20px auto;
   position: relative; 
+  overflow: hidden; 
+  box-sizing: border-box;
 }
 
 .left-column {
@@ -21,10 +23,8 @@
 .right-column {
   flex: 1 1 75%;
   background-color: white;
-  padding: 10px;
+  padding: 50px;
   border-radius: 10px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 
 @media (min-width: 1180px) {
@@ -32,6 +32,13 @@
       width: 66vw;
       margin-left: auto;
       margin-right: auto;
+  }
+  .nav-left {
+    margin-left: 17%;
+  }
+  
+  .nav-right {
+    margin-right: 17%;
   }
 }
 
@@ -44,32 +51,35 @@
       padding-left: 20px;
       padding-right: 20px;
   }
+  
+}
+
+/* Default styles for larger screens */
+.container-float {
+  display: flex;
+}
+
+.left-column {
+  flex: 0 0 25%; /* Adjust as needed */
+}
+
+.right-column {
+  flex: 1;
 }
 
 @media (max-width: 870px) {
   .left-column {
-      flex: 1 1 35%;
+      width: 150px; /* Fixed width for small screens */
   }
   .right-column {
-      flex: 1 1 65%;
+      flex: 1;
+      margin-left: 20px; /* Optional spacing */
   }
+  
 }
 
-@media (max-width: 768px) {
-  .container-float {
-      flex-direction: column;
-      width: 90vw;
-  }
-  .left-column,
-  .right-column {
-      flex: 1 1 100%;
-      padding: 20px;
-  }
-  .right-column {
-      padding-left: 20px;
-      padding-right: 20px;
-  }
-}
+
+
 
 li {
   font-size: 18px;
@@ -197,4 +207,94 @@ td, th {
 
 .form-button:hover {
   background-color: #0056b3;
+}
+
+.button-container {
+  position: absolute;
+  top: 20px; /* Distance from the top of the container */
+  left: 0;
+  width: 200px; /* Width of the button container */
+  border-radius: 0 8px 8px 0; /* Rounded corners */
+  padding: 20px;
+}
+
+.button-lib {
+  font-size: 16px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%; /* Full width buttons */
+}
+
+.side-button {
+  background: linear-gradient(145deg, #0069d9, #007bff); /* Gradient background */
+  color: white;
+  font-weight: bold;
+  margin-top: 10px; /* Spacing between buttons */
+}
+
+.button-lib:hover {
+  background: linear-gradient(145deg, #002d5b, #003d7a); /* Darker gradient on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.button-list {
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Remove default margin */
+}
+
+.button-list li {
+  margin: 10px 0; /* Margin between list items */
+}
+
+.button-text {
+  position: relative;
+}
+
+.button-lib::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 15px; /* Adjust to position the icon */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: url('path/to/icon.png') no-repeat center center; /* Replace with your icon path */
+  background-size: contain;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button-lib:hover::before {
+  opacity: 1;
+}
+
+
+
+@media (max-width: 768px) {
+  .container-float {
+      flex-direction: column;
+      width: 90vw;
+  }
+
+  .left-column {
+      width: 100%; /* Full width in column layout */
+  }
+
+  .right-column {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+
+  .button-lib {
+    width: 30%; /* Full width buttons */
+  }
 }

@@ -54,6 +54,10 @@ export const AssetDashboard = () => {
         setActiveContent('add_posters');
     };
 
+    const addQR = () => {
+        setActiveContent('add_qr');
+    };
+
     const [formData, setFormData] = useState({
         title: '',
         image: '',
@@ -96,7 +100,7 @@ export const AssetDashboard = () => {
         <div className="main-background">
             <div className="navigation">
                 <div className="nav-left">DashPortal</div>
-                <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
+                <div className={`nav-right ${isMenuOpen ? 'active' : ''}`}>
                     <button className="nav-button" onClick={handleHome}>Home</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
@@ -113,14 +117,18 @@ export const AssetDashboard = () => {
                     Laboratory Name
                 </div>
                 <div className="head-right">
+                    <button onClick={handleBack} style={{ backgroundColor: 'white', color: 'black' }}>Back</button>
                 </div>
             </div>
             <div className="container-float">
                 <div className="left-column">
-                    <h3><button className="button-lib" onClick={showPosters}>Poster Library</button></h3>
-                    <ul>
-                        <li><button className="button-lib" onClick={addPosters}>Create Poster</button></li>
-                    </ul>
+
+                <ul class="button-list">
+                    <li><button class="button-lib side-button" onClick={showPosters}>Poster Library</button></li>
+                    <li><button class="button-lib side-button" onClick={addQR}>Create QR</button></li>
+                    <li><button class="button-lib side-button" onClick={addPosters}>Create Poster</button></li>
+                </ul>
+
                 </div>
                 <div className="right-column">
                     {activeContent === 'posters' && 
@@ -131,7 +139,7 @@ export const AssetDashboard = () => {
                                     <img className="item-card-pic" src="ds.png" alt="Poster 1" />
                                     <div className="item-card-body">
                                         <h4 className="item-card-title">Poster 1</h4>
-                                        <a href="#" className="item-btn">Edit</a>
+                                        <a href="#" className="item-btn">View</a>
                                         <a href="#" className="item-btn">Download</a>
                                         <a href="#" className="item-btn">Delete</a>
                                     </div>
@@ -152,6 +160,34 @@ export const AssetDashboard = () => {
                             </div>
                         </div>
                     </div>
+                    }
+
+                    {activeContent === 'add_qr' &&
+                        <form className="form" onSubmit={handleSubmit}>
+                        <div className="form-group">
+                          <label className="form-label">Name:</label>
+                          <input
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
+                            required
+                            className="form-input"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Link:</label>
+                          <input
+                            type="url"
+                            name="link"
+                            value={formData.link}
+                            onChange={handleChange}
+                            required
+                            className="form-input"
+                          />
+                        </div>
+                        <button type="submit" className="form-button">Submit</button>
+                      </form>
                     }
 
                     {activeContent === 'add_posters' && 

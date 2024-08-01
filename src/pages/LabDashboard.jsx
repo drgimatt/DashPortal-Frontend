@@ -48,7 +48,6 @@ export const LabDashboard = () => {
                 <div className="nav-left">DashPortal</div>
                 <div className="nav-right">
                     <button className="nav-button" onClick={handleHome}>Home</button>
-                    <button className="nav-button" onClick={handleManageAccess}>Manage User Access</button>
                     <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
                 </div>
             </div>
