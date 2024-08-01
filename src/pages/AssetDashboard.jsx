@@ -7,6 +7,11 @@ export const AssetDashboard = () => {
     const [activeContent, setActiveContent] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // Set initial state of activeContent
+    useEffect(() => {
+        setActiveContent('posters');
+    }, []); // Empty dependency array ensures this runs only once
+
     // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(prevState => !prevState);
@@ -90,18 +95,18 @@ export const AssetDashboard = () => {
     return (
         <div className="main-background">
             <div className="navigation">
-      <div className="nav-left">DashPortal</div>
-      <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
-        <button className="nav-button" onClick={handleHome}>Home</button>
-        <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
-      </div>
-      <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
-    </div>
+                <div className="nav-left">DashPortal</div>
+                <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
+                    <button className="nav-button" onClick={handleHome}>Home</button>
+                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
+                </div>
+                <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
+            </div>
 
             <div className="header-container">
                 <div className="head-left">
