@@ -112,9 +112,8 @@ export const AssetDashboard = () => {
             </div>
             <div className="container-float">
                 <div className="left-column">
-                    <h3>Poster Library</h3>
+                    <h3><button className="button-lib" onClick={showPosters}>Poster Library</button></h3>
                     <ul>
-                        <li><button className="button-lib" onClick={showPosters}>Posters</button></li>
                         <li><button className="button-lib" onClick={addPosters}>Create Poster</button></li>
                     </ul>
                 </div>
