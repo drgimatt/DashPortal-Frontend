@@ -138,6 +138,11 @@
 }
 
 @media (min-width: 1180px) {
+  .container-float {
+      width: 66vw;
+      margin-left: auto;
+      margin-right: auto;
+  }
   .header-container{
     width: 66vw;
       margin-left: auto;
@@ -157,4 +162,225 @@
 .head-right{
     flex: 1;
     text-align: right;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 0 1%;
+}
+
+.grid-item {
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center; /* Center align the item-card-container horizontally */
+}
+
+/* Card Styles */
+.item-card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Ensure it takes full width of the grid-item */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.item-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-card-pic {
+    width: 100%;
+    height: auto;
+}
+
+.item-card-body {
+    padding: 10px;
+}
+
+.item-card-title {
+    margin: 0;
+}
+
+.item-btn {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* Form Styles */
+.form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: black; /* Set label text color to black */
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white; /* Set input background color to white */
+    color: #333; /* Set input text color */
+}
+
+.form-checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center checkboxes horizontally */
+    gap: 10px; /* Add spacing between checkboxes */
+}
+
+
+.form-checkbox-label {
+    color: black; /* Set days checkbox label color to black */
+}
+
+.form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-button:hover {
+    background-color: #0056b3;
+}
+
+/* Header Styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 15px 35px 15px 15px;
+    border-radius: 10px;
+    margin: 30px 5% 20px;
+    width: 90vw;
+    position: relative;
+}
+
+@media (min-width: 1180px) {
+    .header-container {
+        width: 66vw;
+        margin: 30px auto 20px;
+    }
+}
+
+.head-right {
+    flex: 1;
+    text-align: right;
+}
+
+
+
+.button-style {
+    background-color: #0056b3; /* Adjust color if needed */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.plus-icon-button {
+    background-color: #0056b3; /* Match your background color */
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow for better visibility */
+}
+
+/* Popup Form Styles */
+.popup-form-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.popup-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-form-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Form Element Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+button[type="submit"] {
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
 }

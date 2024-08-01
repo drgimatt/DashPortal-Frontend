@@ -75,6 +75,7 @@ a:hover {
 }
 
 .nav-right.active {
+  margin: 0;
   opacity: 1;
   transform: translateX(0) scale(1); /* Slide into view */
   pointer-events: auto; /* Enable interactions */
@@ -177,6 +178,8 @@ a:hover {
     opacity: 1;
   }
 }
+
+
 
 
 

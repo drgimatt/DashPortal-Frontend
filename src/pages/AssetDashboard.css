@@ -50,11 +50,11 @@
       padding-right: 20px;
   }
   .nav-left {
-    margin-left: 0;
+    margin-left: 5%;
   }
   
   .nav-right {
-    margin-right: 0;
+    margin-right: 5%;
   }
   
 }
@@ -82,9 +82,6 @@
   }
   
 }
-
-
-
 
 li {
   font-size: 18px;
