@@ -3,7 +3,7 @@ import './LabDashboard.css';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-//import { fetchLaboratories } from '../services/api';
+// import { fetchLaboratories } from '../services/api';
 
 export const LabDashboard = () => {
     const navigate = useNavigate();
@@ -13,7 +13,6 @@ export const LabDashboard = () => {
     const [logo, setLogo] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isHamburg, setHamburg] = useState(false);
-
 
     useEffect(() => {
         const getLaboratories = async () => {
@@ -38,19 +37,30 @@ export const LabDashboard = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
             setHamburg(false);
-        }
-        else{
+        } else {
             setHamburg(true);
         }
     };
 
-    // Set up event listener on component mount and remove it on unmount
+    // Function to handle scroll event
+    const handleScroll = () => {
+        console.log("Scroll event detected");
+        if (window.scrollY > 0 && isMenuOpen) {
+            console.log("Closing menu due to scroll");
+            setIsMenuOpen(false);
+        }
+    };
+
+    // Set up event listeners on component mount and remove them on unmount
     useEffect(() => {
         window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isMenuOpen]); // Add isMenuOpen to dependency array to re-attach listener if it changes
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
@@ -89,11 +99,8 @@ export const LabDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
+        console.log({ name, logo });
     };
-
-
-    
 
     return (
         <div className="main-background">
@@ -115,9 +122,7 @@ export const LabDashboard = () => {
                 {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
             </div>
             <div className="header-container">
-                <div className="head-left">
-                    Laboratories
-                </div>
+                <div className="head-left">Laboratories</div>
                 <div className="head-right">
                     <button className="plus-icon-button" onClick={handleOpenForm}>
                         <FontAwesomeIcon icon={faPlus} />
@@ -152,10 +157,9 @@ export const LabDashboard = () => {
                     <div className="popup-form-container">
                         <button className="close-form-button" onClick={handleCloseForm} style={{color:'black'}}>×</button>
                         <form className="form" onSubmit={handleSubmit}>
-                        <h2 className="head-left" style={{textAlign: 'center'}}>Add Laboratory</h2>
+                            <h2 className="head-left" style={{textAlign: 'center'}}>Add Laboratory</h2>
                             <div className="form-group">
-                            <label className="form-label">Laboratory Name:</label>
-                                
+                                <label className="form-label">Laboratory Name:</label>
                                 <input 
                                     type="text" 
                                     value={name} 
@@ -166,7 +170,7 @@ export const LabDashboard = () => {
                                 />
                             </div>
                             <div className="form-group">
-                            <label className="form-label">Laboratory Logo:</label>
+                                <label className="form-label">Laboratory Logo:</label>
                                 <input 
                                     type="file" 
                                     accept="image/*" 

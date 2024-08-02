@@ -23,19 +23,30 @@ export const AssetDashboard = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
             setHamburg(false);
-        }
-        else{
+        } else {
             setHamburg(true);
         }
     };
 
-    // Set up event listener on component mount and remove it on unmount
+    // Function to handle scroll event
+    const handleScroll = () => {
+        console.log("Scroll event detected");
+        if (window.scrollY > 0 && isMenuOpen) {
+            console.log("Closing menu due to scroll");
+            setIsMenuOpen(false);
+        }
+    };
+
+    // Set up event listeners on component mount and remove them on unmount
     useEffect(() => {
         window.addEventListener('resize', handleResize);
+        window.addEventListener('scroll', handleScroll);
+
         return () => {
             window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [isMenuOpen]); // Add isMenuOpen to dependency array to re-attach listener if it changes
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
@@ -49,7 +60,7 @@ export const AssetDashboard = () => {
     const handleHome = () => {
         localStorage.removeItem('token');
         navigate('/land');
-    }
+    };
 
     const showPosters = () => {
         setActiveContent('posters');
@@ -67,32 +78,32 @@ export const AssetDashboard = () => {
         title: '',
         image: '',
         days: {
-          monday: false,
-          tuesday: false,
-          wednesday: false,
-          thursday: false,
-          friday: false,
-          saturday: false,
-          sunday: false,
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false,
         },
         department: '',
         name: '',
         labName: '',
         link: '',
-      });
+    });
 
     const handleChange = (e) => {
         const { name, value, type, files, checked } = e.target;
         if (type === 'file') {
-          setFormData(prevData => ({
-            ...prevData,
-            imageFile: files[0],
-          }));
+            setFormData(prevData => ({
+                ...prevData,
+                imageFile: files[0],
+            }));
         } else {
-          setFormData(prevData => ({
-            ...prevData,
-            [type === 'checkbox' ? 'days' : name]: type === 'checkbox' ? { ...prevData.days, [name]: checked } : value,
-          }));
+            setFormData(prevData => ({
+                ...prevData,
+                [type === 'checkbox' ? 'days' : name]: type === 'checkbox' ? { ...prevData.days, [name]: checked } : value,
+            }));
         }
     };
 
@@ -122,22 +133,18 @@ export const AssetDashboard = () => {
             </div>
 
             <div className="header-container">
-                <div className="head-left">
-                    Laboratory Name
-                </div>
+                <div className="head-left">Laboratory Name</div>
                 <div className="head-right">
                     <button onClick={handleBack} style={{ backgroundColor: 'white', color: 'black' }}>Back</button>
                 </div>
             </div>
             <div className="container-float">
                 <div className="left-column">
-
-                <ul class="button-list">
-                    <li><button class="button-lib side-button" onClick={showPosters}>Poster Library</button></li>
-                    <li><button class="button-lib side-button" onClick={addQR}>Create QR</button></li>
-                    <li><button class="button-lib side-button" onClick={addPosters}>Create Poster</button></li>
-                </ul>
-
+                    <ul className="button-list">
+                        <li><button className="button-lib side-button" onClick={showPosters}>Poster Library</button></li>
+                        <li><button className="button-lib side-button" onClick={addQR}>Create QR</button></li>
+                        <li><button className="button-lib side-button" onClick={addPosters}>Create Poster</button></li>
+                    </ul>
                 </div>
                 <div className="right-column">
                     {activeContent === 'posters' && 
@@ -173,95 +180,95 @@ export const AssetDashboard = () => {
 
                     {activeContent === 'add_qr' &&
                         <form className="form" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                          <label className="form-label">Name:</label>
-                          <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                            className="form-input"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-label">Link:</label>
-                          <input
-                            type="url"
-                            name="link"
-                            value={formData.link}
-                            onChange={handleChange}
-                            required
-                            className="form-input"
-                          />
-                        </div>
-                        <button type="submit" className="form-button">Submit</button>
-                      </form>
+                            <div className="form-group">
+                                <label className="form-label">Name:</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Link:</label>
+                                <input
+                                    type="url"
+                                    name="link"
+                                    value={formData.link}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <button type="submit" className="form-button">Submit</button>
+                        </form>
                     }
 
                     {activeContent === 'add_posters' && 
                         <form className="form" onSubmit={handleSubmit}>
-                          <div className="form-group">
-                            <label className="form-label">Personnel:</label>
-                            <input
-                              type="text"
-                              name="name"
-                              value={formData.name}
-                              onChange={handleChange}
-                              required
-                              className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Department:</label>
-                            <input
-                              type="text"
-                              name="department"
-                              value={formData.department}
-                              onChange={handleChange}
-                              required
-                              className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Upload Photo:</label>
-                            <input
-                                type="file"
-                                name="imageFile"
-                                accept="image/*"
-                                onChange={handleChange}
-                                required
-                                className="form-input"
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Schedule:</label>
-                            <div className="form-checkbox-group">
-                                {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
-                                <div key={day} className="form-checkbox">
+                            <div className="form-group">
+                                <label className="form-label">Personnel:</label>
                                 <input
-                                    type="checkbox"
-                                    name={day}
-                                    checked={formData.days[day]}
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleChange}
+                                    required
+                                    className="form-input"
                                 />
-                                <label className="form-checkbox-label">{day.charAt(0).toUpperCase() + day.slice(1)}</label>
-                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Department:</label>
+                                <input
+                                    type="text"
+                                    name="department"
+                                    value={formData.department}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Upload Photo:</label>
+                                <input
+                                    type="file"
+                                    name="imageFile"
+                                    accept="image/*"
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Schedule:</label>
+                                <div className="form-checkbox-group">
+                                    {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
+                                        <div key={day} className="form-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                name={day}
+                                                checked={formData.days[day]}
+                                                onChange={handleChange}
+                                            />
+                                            <label className="form-checkbox-label">{day.charAt(0).toUpperCase() + day.slice(1)}</label>
+                                        </div>
                                     ))}
-                          </div>
-                          </div>
-                          <div className="form-group">
-                            <label className="form-label">Link:</label>
-                            <input
-                              type="url"
-                              name="link"
-                              value={formData.link}
-                              onChange={handleChange}
-                              required
-                              className="form-input"
-                            />
-                          </div>
-                          <button type="submit" className="form-button">Submit</button>
+                                </div>
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Link:</label>
+                                <input
+                                    type="url"
+                                    name="link"
+                                    value={formData.link}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <button type="submit" className="form-button">Submit</button>
                         </form>
                     }
                 </div>
