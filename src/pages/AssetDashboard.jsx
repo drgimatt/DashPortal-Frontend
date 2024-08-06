@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AssetDashboard.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const AssetDashboard = () => {
     const navigate = useNavigate();
@@ -8,17 +9,14 @@ export const AssetDashboard = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isHamburg, setHamburg] = useState(false);
 
-    // Set initial state of activeContent
     useEffect(() => {
         setActiveContent('posters');
-    }, []); // Empty dependency array ensures this runs only once
+    }, []);
 
-    // Function to toggle the menu
     const toggleMenu = () => {
         setIsMenuOpen(prevState => !prevState);
     };
 
-    // Function to handle viewport size changes
     const handleResize = () => {
         if (window.innerWidth > 768) {
             setIsMenuOpen(false);
@@ -28,16 +26,12 @@ export const AssetDashboard = () => {
         }
     };
 
-    // Function to handle scroll event
     const handleScroll = () => {
-        console.log("Scroll event detected");
         if (window.scrollY > 0 && isMenuOpen) {
-            console.log("Closing menu due to scroll");
             setIsMenuOpen(false);
         }
     };
 
-    // Set up event listeners on component mount and remove them on unmount
     useEffect(() => {
         window.addEventListener('resize', handleResize);
         window.addEventListener('scroll', handleScroll);
@@ -46,7 +40,7 @@ export const AssetDashboard = () => {
             window.removeEventListener('resize', handleResize);
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [isMenuOpen]); // Add isMenuOpen to dependency array to re-attach listener if it changes
+    }, [isMenuOpen]);
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
@@ -97,7 +91,7 @@ export const AssetDashboard = () => {
         if (type === 'file') {
             setFormData(prevData => ({
                 ...prevData,
-                imageFile: files[0],
+                image: files[0],
             }));
         } else {
             setFormData(prevData => ({
@@ -107,9 +101,32 @@ export const AssetDashboard = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
+
+        const formDataObj = new FormData();
+        formDataObj.append('title', formData.title);
+        formDataObj.append('image', formData.image);
+        formDataObj.append('department', formData.department);
+        formDataObj.append('name', formData.name);
+        formDataObj.append('labName', formData.labName);
+        formDataObj.append('link', formData.link);
+        for (const [day, value] of Object.entries(formData.days)) {
+            formDataObj.append(`days[${day}]`, value);
+        }
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/posters', formDataObj, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            console.log(response.data);
+            // Handle success (e.g., show a message or navigate to another page)
+        } catch (error) {
+            console.error(error);
+            // Handle error (e.g., show an error message)
+        }
     };
 
     return (
@@ -147,7 +164,7 @@ export const AssetDashboard = () => {
                     </ul>
                 </div>
                 <div className="right-column">
-                    {activeContent === 'posters' && 
+                    {activeContent === 'posters' &&
                     <div className="grid-container">
                         <div className="grid-item">
                             <div className="item-card-container">
@@ -234,7 +251,7 @@ export const AssetDashboard = () => {
                                 <label className="form-label">Upload Photo:</label>
                                 <input
                                     type="file"
-                                    name="imageFile"
+                                    name="image"
                                     accept="image/*"
                                     onChange={handleChange}
                                     required
@@ -242,31 +259,94 @@ export const AssetDashboard = () => {
                                 />
                             </div>
                             <div className="form-group">
-                                <label className="form-label">Schedule:</label>
-                                <div className="form-checkbox-group">
-                                    {['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'].map((day) => (
-                                        <div key={day} className="form-checkbox">
-                                            <input
-                                                type="checkbox"
-                                                name={day}
-                                                checked={formData.days[day]}
-                                                onChange={handleChange}
-                                            />
-                                            <label className="form-checkbox-label">{day.charAt(0).toUpperCase() + day.slice(1)}</label>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <label className="form-label">Link:</label>
+                                <label className="form-label">Lab Name:</label>
                                 <input
-                                    type="url"
-                                    name="link"
-                                    value={formData.link}
+                                    type="text"
+                                    name="labName"
+                                    value={formData.labName}
                                     onChange={handleChange}
                                     required
                                     className="form-input"
                                 />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Title:</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    value={formData.title}
+                                    onChange={handleChange}
+                                    required
+                                    className="form-input"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label className="form-label">Days Available:</label>
+                                <div className="checkbox-group">
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="monday"
+                                            checked={formData.days.monday}
+                                            onChange={handleChange}
+                                        />
+                                        Monday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="tuesday"
+                                            checked={formData.days.tuesday}
+                                            onChange={handleChange}
+                                        />
+                                        Tuesday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="wednesday"
+                                            checked={formData.days.wednesday}
+                                            onChange={handleChange}
+                                        />
+                                        Wednesday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="thursday"
+                                            checked={formData.days.thursday}
+                                            onChange={handleChange}
+                                        />
+                                        Thursday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="friday"
+                                            checked={formData.days.friday}
+                                            onChange={handleChange}
+                                        />
+                                        Friday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="saturday"
+                                            checked={formData.days.saturday}
+                                            onChange={handleChange}
+                                        />
+                                        Saturday
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="checkbox"
+                                            name="sunday"
+                                            checked={formData.days.sunday}
+                                            onChange={handleChange}
+                                        />
+                                        Sunday
+                                    </label>
+                                </div>
                             </div>
                             <button type="submit" className="form-button">Submit</button>
                         </form>
