@@ -3,7 +3,6 @@ import './LabDashboard.css';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-// import { fetchLaboratories } from '../services/api';
 
 export const LabDashboard = () => {
     const navigate = useNavigate();
@@ -11,13 +10,15 @@ export const LabDashboard = () => {
     const [isFormOpen, setFormOpen] = useState(false);
     const [name, setName] = useState('');
     const [logo, setLogo] = useState(null);
+    const [location, setLocation] = useState('');
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isHamburg, setHamburg] = useState(false);
 
     useEffect(() => {
         const getLaboratories = async () => {
             try {
-                const data = await fetchLaboratories();
+                const response = await fetch('http://localhost:5000/api/labs');
+                const data = await response.json();
                 setLaboratories(data);
             } catch (error) {
                 console.error('Error fetching laboratories:', error);
@@ -27,48 +28,9 @@ export const LabDashboard = () => {
         getLaboratories();
     }, []);
 
-    // Function to toggle the menu
-    const toggleMenu = () => {
-        setIsMenuOpen(prevState => !prevState);
-    };
-
-    // Function to handle viewport size changes
-    const handleResize = () => {
-        if (window.innerWidth > 768) {
-            setIsMenuOpen(false);
-            setHamburg(false);
-        } else {
-            setHamburg(true);
-        }
-    };
-
-    // Function to handle scroll event
-    const handleScroll = () => {
-        console.log("Scroll event detected");
-        if (window.scrollY > 0 && isMenuOpen) {
-            console.log("Closing menu due to scroll");
-            setIsMenuOpen(false);
-        }
-    };
-
-    // Set up event listeners on component mount and remove them on unmount
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [isMenuOpen]); // Add isMenuOpen to dependency array to re-attach listener if it changes
-
     const handleSignOut = () => {
         localStorage.removeItem('token');
         navigate('/login');
-    };
-
-    const handleBack = () => {
-        navigate(-1);
     };
 
     const handleHome = () => {
@@ -87,6 +49,7 @@ export const LabDashboard = () => {
         setFormOpen(false);
         setName('');
         setLogo(null);
+        setLocation('');
     };
 
     const handleNameChange = (e) => {
@@ -97,89 +60,96 @@ export const LabDashboard = () => {
         setLogo(e.target.files[0]);
     };
 
-    const handleSubmit = (e) => {
+    const handleLocationChange = (e) => {
+        setLocation(e.target.value);
+    };
+
+    const handleAddLaboratory = async (e) => {
         e.preventDefault();
-        console.log({ name, logo });
+
+        const formData = new FormData();
+        formData.append('LabName', name);
+        formData.append('LabLogo', logo);
+        formData.append('LabLocation', location);
+
+        try {
+            const response = await fetch('http://localhost:5000/api/labs', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const newLaboratory = await response.json();
+                setLaboratories([...laboratories, newLaboratory]);
+                handleCloseForm();
+            } else {
+                console.error('Failed to add laboratory');
+            }
+        } catch (error) {
+            console.error('Error adding laboratory:', error);
+        }
+    };
+
+    const handleHamburgerClick = () => {
+        setHamburg(!isHamburg);
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <div className="main-background">
-            <div className="navigation">
-                <div className="nav-left">DashPortal</div>
-                <div className={`nav-right ${isMenuOpen ? 'active' : 'hidden'}`}>
-                    <button className="nav-button" onClick={handleHome}>Home</button>
-                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
-                </div>
-                <div className={`nav-right ${!isHamburg ? 'active' : 'hidden'}`}>
-                    <button className="nav-button" onClick={handleHome}>Home</button>
-                    <button className="nav-button" onClick={handleSignOut}>Sign Out</button>
-                </div>
-                <div className={`hamburger-icon ${isMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
+        <div className="lab-dashboard-container">
+            <header className="lab-dashboard-header">
+                <button className="hamburger-menu" onClick={handleHamburgerClick}>
+                    <span className={`hamburger-bar ${isHamburg ? 'open' : ''}`}></span>
+                    <span className={`hamburger-bar ${isHamburg ? 'open' : ''}`}></span>
+                    <span className={`hamburger-bar ${isHamburg ? 'open' : ''}`}></span>
+                </button>
+                <h1 className="lab-dashboard-title">Laboratories</h1>
+                <nav className={`lab-dashboard-menu ${isMenuOpen ? 'open' : ''}`}>
+                    <ul>
+                        <li>
+                            <a onClick={handleHome}>Home</a>
+                        </li>
+                        <li>
+                            <a onClick={handleSignOut}>Sign Out</a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+            <div className="lab-list-container">
+                {laboratories.map(lab => (
+                    <div key={lab.id} className="lab-item">
+                        <img src={`data:image/png;base64,${Buffer.from(lab.LabLogo).toString('base64')}`} alt={`${lab.LabName} Logo`} />
+                        <h3>{lab.LabName}</h3>
+                        <p>{lab.LabLocation}</p>
+                        <button onClick={() => handleLab(lab.id)}>View Assets</button>
+                    </div>
+                ))}
             </div>
-            <div className="header-container">
-                <div className="head-left">Laboratories</div>
-                <div className="head-right">
-                    <button className="plus-icon-button" onClick={handleOpenForm}>
-                        <FontAwesomeIcon icon={faPlus} />
-                    </button>
-                </div>
-            </div>
-            <div className="container-float">
-                <div className="grid-container">
-                    {laboratories.map((lab) => (
-                        <div className="grid-item" key={lab.LabID}>
-                            <div className="item-card-container">
-                                <div className="item-card">
-                                    <img 
-                                        className="item-card-pic" 
-                                        src={lab.LabLogo} 
-                                        alt={`${lab.LabName} Image`} 
-                                    />
-                                    <div className="item-card-body">
-                                        <h4 className="item-card-title">{lab.LabName}</h4>
-                                        <button className="item-btn" onClick={() => handleLab(lab.LabID)}>More Info</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            <button className="add-lab-button" onClick={handleOpenForm}>
+                <FontAwesomeIcon icon={faPlus} /> Add New Laboratory
+            </button>
 
-            {/* Popup Form */}
             {isFormOpen && (
-                <div className="popup-form-overlay">
-                    <div className="popup-form-container">
-                        <button className="close-form-button" onClick={handleCloseForm} style={{color:'black'}}>×</button>
-                        <form className="form" onSubmit={handleSubmit}>
-                            <h2 className="head-left" style={{textAlign: 'center'}}>Add Laboratory</h2>
-                            <div className="form-group">
-                                <label className="form-label">Laboratory Name:</label>
-                                <input 
-                                    type="text" 
-                                    value={name} 
-                                    onChange={handleNameChange} 
-                                    placeholder="Enter laboratory name" 
-                                    required 
-                                    className="form-input"
-                                />
+                <div className="lab-form-overlay">
+                    <div className="lab-form-container">
+                        <h2>Add New Laboratory</h2>
+                        <form onSubmit={handleAddLaboratory}>
+                            <label>
+                                Laboratory Name:
+                                <input type="text" value={name} onChange={handleNameChange} required />
+                            </label>
+                            <label>
+                                Laboratory Logo:
+                                <input type="file" onChange={handleLogoChange} accept="image/*" />
+                            </label>
+                            <label>
+                                Laboratory Location:
+                                <input type="text" value={location} onChange={handleLocationChange} required />
+                            </label>
+                            <div className="lab-form-buttons">
+                                <button type="submit">Add Laboratory</button>
+                                <button type="button" onClick={handleCloseForm}>Cancel</button>
                             </div>
-                            <div className="form-group">
-                                <label className="form-label">Laboratory Logo:</label>
-                                <input 
-                                    type="file" 
-                                    accept="image/*" 
-                                    onChange={handleLogoChange} 
-                                    required 
-                                    className="form-input"
-                                />
-                            </div>
-                            <button type="submit">Submit</button>
                         </form>
                     </div>
                 </div>

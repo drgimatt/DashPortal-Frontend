@@ -254,7 +254,7 @@ export const AssetDashboard = () => {
                                     name="image"
                                     accept="image/*"
                                     onChange={handleChange}
-                                    required
+                                    //required
                                     className="form-input"
                                 />
                             </div>
@@ -283,7 +283,7 @@ export const AssetDashboard = () => {
                             <div className="form-group">
                                 <label className="form-label">Days Available:</label>
                                 <div className="checkbox-group">
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="monday"
@@ -292,7 +292,7 @@ export const AssetDashboard = () => {
                                         />
                                         Monday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="tuesday"
@@ -301,7 +301,7 @@ export const AssetDashboard = () => {
                                         />
                                         Tuesday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="wednesday"
@@ -310,7 +310,7 @@ export const AssetDashboard = () => {
                                         />
                                         Wednesday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="thursday"
@@ -319,7 +319,7 @@ export const AssetDashboard = () => {
                                         />
                                         Thursday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="friday"
@@ -328,7 +328,7 @@ export const AssetDashboard = () => {
                                         />
                                         Friday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="saturday"
@@ -337,7 +337,7 @@ export const AssetDashboard = () => {
                                         />
                                         Saturday
                                     </label>
-                                    <label>
+                                    <label className="form-label">
                                         <input
                                             type="checkbox"
                                             name="sunday"
