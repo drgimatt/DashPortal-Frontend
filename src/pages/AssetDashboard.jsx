@@ -225,7 +225,7 @@ export const AssetDashboard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        
+    
         const formDataObj = new FormData();
         formDataObj.append('title', formData.title);
         formDataObj.append('department', formData.department);
@@ -235,22 +235,24 @@ export const AssetDashboard = () => {
         if (formData.image) {
             formDataObj.append('image', formData.image);
         }
-        if (activeContent === 'add_qr') {
-            formDataObj.append('link', formData.link);
-        }
-        if (activeContent === 'add_posters') {
-            formDataObj.append('qrCode', formData.qrCode);
-        }
     
         try {
             const response = await axios.post('http://localhost:5000/api/posters', formDataObj, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    responseType: 'blob',  // Expect a blob (binary data)
                 },
             });
     
-            console.log(response.data);  // Log the response to check its structure
+            // Create a download link
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${formData.title.replace(/\s+/g, '_')}.pdf`);
+            document.body.appendChild(link);
+            link.click();
     
+            // Reset form data
             setFormData({
                 title: '',
                 image: null,
@@ -270,13 +272,6 @@ export const AssetDashboard = () => {
                 qrCode: '',
             });
     
-            const { pdfUrl } = response.data;
-            if (pdfUrl) {
-                window.open(pdfUrl, '_blank');
-            } else {
-                alert('Poster created successfully, but no PDF URL returned.');
-            }
-    
         } catch (error) {
             console.error(error);
             alert('An error occurred while submitting the form.');
@@ -284,6 +279,7 @@ export const AssetDashboard = () => {
             setLoading(false);
         }
     };
+    
     
     
 
