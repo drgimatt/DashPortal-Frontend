@@ -240,9 +240,12 @@ export const AssetDashboard = () => {
             const response = await axios.post('http://localhost:5000/api/posters', formDataObj, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
-                    responseType: 'blob',  // Expect a blob (binary data)
                 },
+                responseType: 'blob',  // Expect a blob (binary data)
             });
+    
+            // Log response status to verify success
+            console.log("Response Status:", response.status);
     
             // Create a download link
             const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -251,6 +254,7 @@ export const AssetDashboard = () => {
             link.setAttribute('download', `${formData.title.replace(/\s+/g, '_')}.pdf`);
             document.body.appendChild(link);
             link.click();
+            link.remove();
     
             // Reset form data
             setFormData({
@@ -268,17 +272,17 @@ export const AssetDashboard = () => {
                 department: '',
                 name: '',
                 labName: '',
-                link: '',
-                qrCode: '',
             });
     
         } catch (error) {
-            console.error(error);
+            console.error("Error during form submission:", error);
             alert('An error occurred while submitting the form.');
         } finally {
             setLoading(false);
         }
     };
+    
+    
     
     
     
