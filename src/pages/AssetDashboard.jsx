@@ -232,6 +232,7 @@ export const AssetDashboard = () => {
         formDataObj.append('name', formData.name);
         formDataObj.append('labName', formData.labName);
         formDataObj.append('days', JSON.stringify(formData.days));
+        formDataObj.append('qrCode', formData.qrCode);
         if (formData.image) {
             formDataObj.append('image', formData.image);
         }
