@@ -44,7 +44,7 @@ export const Login = () => {
                 password
             });
             localStorage.setItem('token', response.data.token);
-            navigate('/labdash');
+            navigate('/assetdash');
         } catch (error) {
             setError(error.response?.data?.message || "Login failed. Please try again.");
         }

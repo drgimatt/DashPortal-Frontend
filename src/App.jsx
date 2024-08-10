@@ -13,7 +13,7 @@ const App = () => {
         <Routes>
           <Route exact path='/land' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
-          <Route path='/' element={<AssetDashboard/>} />
+          <Route path='/assetdash' element={<AssetDashboard/>} />
           <Route path='*' element={<PageNotFound/>} />
           <Route path='/labdash' element={<LabDashboard/>} />
         </Routes>
