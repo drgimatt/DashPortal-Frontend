@@ -11,7 +11,7 @@ const App = () => {
   return (
     <Router>
         <Routes>
-          <Route exact path='/land' element={<Landing/>} />
+          <Route exact path='/' element={<Landing/>} />
           <Route path='/login' element={<Login/>} />
           <Route path='/assetdash' element={<AssetDashboard/>} />
           <Route path='*' element={<PageNotFound/>} />
