@@ -309,7 +309,7 @@ export const AssetDashboard = () => {
             </div>
 
             <div className="header-container">
-                <div className="head-left">Laboratory Name</div>
+                <div className="head-left">Menu</div>
                 <div className="head-right">
                     <button onClick={handleBack} className="back-button">Back</button>
                 </div>
