@@ -77,7 +77,7 @@ const PosterForm = ({ formData, handleChange, handleSubmit }) => (
             </div>
         </div>
         <div className="form-group">
-            <label className="form-label">QR Code:</label>
+            <label className="form-label">Link:</label>
             <input
                 type="text"
                 name="qrCode"
