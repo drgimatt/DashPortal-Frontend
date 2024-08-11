@@ -282,11 +282,6 @@ export const AssetDashboard = () => {
             setLoading(false);
         }
     };
-    
-    
-    
-    
-    
 
     return (
         <div className="main-background">
