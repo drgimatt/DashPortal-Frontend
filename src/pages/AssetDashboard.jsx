@@ -318,7 +318,6 @@ export const AssetDashboard = () => {
                 <div className="left-column">
                     <ul className="button-list">
                         <li><button className="button-lib side-button" onClick={showPosters}>Poster Library</button></li>
-                        <li><button className="button-lib side-button" onClick={addQR}>Create QR</button></li>
                         <li><button className="button-lib side-button" onClick={addPosters}>Create Poster</button></li>
                     </ul>
                 </div>
